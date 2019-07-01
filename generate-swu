@@ -1,0 +1,8 @@
+#!/bin/bash
+
+PRODUCT_NAME="swuforward"
+CONTAINER_VER="1.0"
+FILES="sw-description warp7.swu pico.ext4.gz"
+
+for i in $FILES;do
+	echo $i;done | cpio -ov -H crc > ${PRODUCT_NAME}_${CONTAINER_VER}.swu
