@@ -1,0 +1,77 @@
+software =
+{
+    version = "1.0";
+
+    pico-imx7d = {
+        hardware-compatibility: [ "rev1.2"];
+        stable : {
+            rootfsA : {
+                images: (
+                    {
+                        filename = "pico.ext4.gz";
+                        type = "raw";
+                        installed-directly = true;
+                        compressed = true;
+                        device = "/dev/mmcblk2p2";
+                    },
+                    {
+                        filename = "warp7.swu";
+                        type = "swuforward";
+                        installed-directly = true;
+                        properties: {
+                                url = ["http://10.0.0.100:8080"];
+                        };
+                    }
+                );
+                uboot: (
+                    {
+                        name = "bootcount";
+                        value = "0";
+                    },
+                    {
+                        name = "upgrade_available";
+                        value = "1";
+                    },
+                    {
+                        name = "rootpart";
+                        value = "2";
+                    }
+                );
+
+            };
+            rootfsB : {
+                images: (
+                    {
+                        filename = "pico.ext4.gz";
+                        type = "raw";
+                        installed-directly = true;
+                        compressed = true;
+                        device = "/dev/mmcblk2p3";
+                    },
+                    {
+                        filename = "warp7.swu";
+                        type = "swuforward";
+                        installed-directly = true;
+                        properties: {
+                                 url = ["http://10.0.0.100:8080"];
+                        };
+                    }
+                );
+                uboot: (
+                    {
+                        name = "bootcount";
+                        value = "0";
+                    },
+                    {
+                        name = "upgrade_available";
+                        value = "1";
+                    },
+                    {
+                        name = "rootpart";
+                        value = "3";
+                    }
+                );
+            };
+        };
+    }
+}
